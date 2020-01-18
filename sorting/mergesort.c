@@ -4,27 +4,27 @@
 #include "sorting_utils.h"
 
 void mergesort(int *input, size_t size);
-void _mergesort(int *input, size_t lower_bound, size_t upper_bound);
-void __merge(int *input, size_t lower_bound, size_t middle, size_t upper_bound);
+void mergesort_helper(int *input, size_t lower_bound, size_t upper_bound);
+void merge(int *input, size_t lower_bound, size_t middle, size_t upper_bound);
 
 void mergesort(int *input, size_t size) {
-	_mergesort(input, 0, size - 1);
+	mergesort_helper(input, 0, size - 1);
 }
 
-void _mergesort(int *input, size_t lower_bound, size_t upper_bound) {
+void mergesort_helper(int *input, size_t lower_bound, size_t upper_bound) {
 	if (lower_bound >= upper_bound) return;
 
 	// lower + (upper - lower) / 2 equivalent to (upper + lower)/2
 	// but it's more robust to overflow
 	size_t middle = lower_bound + (upper_bound - lower_bound) / 2;
 
-	_mergesort(input, lower_bound, middle);
-	_mergesort(input, middle + 1, upper_bound);
+	mergesort_helper(input, lower_bound, middle);
+	mergesort_helper(input, middle + 1, upper_bound);
 
-	__merge(input, lower_bound, middle, upper_bound);
+	merge(input, lower_bound, middle, upper_bound);
 }
 
-void __merge(int *input, size_t lower_bound, size_t middle, size_t upper_bound) {
+void merge(int *input, size_t lower_bound, size_t middle, size_t upper_bound) {
 	size_t lower_scan = lower_bound;
 	size_t upper_scan = middle + 1;
 
