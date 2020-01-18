@@ -8,6 +8,7 @@ void quicksort_helper(int *input, size_t lower_bound, size_t upper_bound);
 size_t partition(int *input, size_t lower_bound, size_t upper_bound);
 
 void quicksort(int *input, size_t size) {
+	if (size == 0) return;
 	quicksort_helper(input, 0, size - 1);
 }
 
@@ -52,4 +53,11 @@ Test(quicksort, simple_case) {
 
 	check_sorted(input, 5);
 	cr_expect_arr_eq(input, expected, 5 * sizeof(int));
+}
+
+Test(quicksort, edge_case_zero_length) {
+	int input[] = {};
+	int expected[] = {};
+
+	quicksort(input, 0);
 }
