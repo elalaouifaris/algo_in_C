@@ -4,24 +4,24 @@
 #include "sorting_utils.h"
 
 void quicksort(int *input, size_t size);
-void _quicksort(int *input, size_t lower_bound, size_t upper_bound);
-size_t __partition(int *input, size_t lower_bound, size_t upper_bound);
+void quicksort_helper(int *input, size_t lower_bound, size_t upper_bound);
+size_t partition(int *input, size_t lower_bound, size_t upper_bound);
 
 void quicksort(int *input, size_t size) {
-	_quicksort(input, 0, size - 1);
+	quicksort_helper(input, 0, size - 1);
 }
 
-void _quicksort(int *input, size_t lower_bound, size_t upper_bound) {
+void quicksort_helper(int *input, size_t lower_bound, size_t upper_bound) {
 	if (upper_bound <= lower_bound) {
 		return;
 	}
 
-	size_t pivot_location = __partition(input, lower_bound, upper_bound);
-	_quicksort(input, lower_bound, pivot_location - 1);
-	_quicksort(input, pivot_location + 1, upper_bound);
+	size_t pivot_location = partition(input, lower_bound, upper_bound);
+	quicksort_helper(input, lower_bound, pivot_location - 1);
+	quicksort_helper(input, pivot_location + 1, upper_bound);
 }
 
-size_t __partition(int *input, size_t lower_bound, size_t upper_bound) {
+size_t partition(int *input, size_t lower_bound, size_t upper_bound) {
 	int pivot = input[lower_bound];
 	size_t start = lower_bound + 1;
 	size_t end = upper_bound;
