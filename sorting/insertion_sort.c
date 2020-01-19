@@ -6,18 +6,18 @@
 void insertion_sort(int *input, size_t size);
 
 void insertion_sort(int *input, size_t size) {
-	int temp;
+	int candidate;
 	size_t unsorted_start;
 	size_t scan_sorted;
 
 	for (unsorted_start = 1; unsorted_start < size; ++unsorted_start) {
-		temp = input[unsorted_start];
+		candidate = input[unsorted_start];
 		scan_sorted = unsorted_start;
-		while (scan_sorted > 0 && temp < input[scan_sorted - 1]) {
+		while (scan_sorted > 0 && candidate < input[scan_sorted - 1]) {
 			input[scan_sorted] = input[scan_sorted - 1];
 			scan_sorted--;
 		}
-		input[scan_sorted] = temp;
+		input[scan_sorted] = candidate;
 	}
 }
 
